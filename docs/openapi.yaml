@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: restaurant-api
+  version: "1.0"
+  contact:
+    name: yuki
+  description: Reach favorite restaurants.
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /restaurants:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  restaurants:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+              examples:
+                example-1:
+                  value:
+                    restaurants:
+                      - id: 1
+                        name: restaurant111
+                      - id: 2
+                        name: restaurant222
+                      - id: 3
+                        name: restaurant333
+                      - id: 4
+                        name: restaurant444
+                      - id: 5
+                        name: restaurant555
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+            multipart/form-data:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-restaurants
+      description: Get restaurants list.
+  "/restaurants/{id}/foods":
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  menus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        restaurantId:
+                          type: number
+                        name:
+                          type: string
+                        price:
+                          type: number
+              examples:
+                example-2:
+                  value:
+                    menus:
+                      - id: 1
+                        restaurantId: 1
+                        name: カレー
+                        price: 500
+                      - id: 2
+                        restaurantId: 1
+                        name: うどん
+                        price: 500
+                      - id: 3
+                        restaurantId: 1
+                        name: 牛丼
+                        price: 500
+                      - id: 4
+                        restaurantId: 1
+                        name: カツ丼
+                        price: 500
+                      - id: 5
+                        restaurantId: 1
+                        name: ラーメン
+                        price: 500
+      operationId: "get-restaurants-:id"
+      description: Get menu list by restaurant.
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+components:
+  schemas: {}
+  securitySchemes: {}
